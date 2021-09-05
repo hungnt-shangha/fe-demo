@@ -198,3 +198,85 @@ body, html {
   font-size: 13px;
   margin-top: 4px;
 }
+
+.layout-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  border-radius: 12px;
+  border: 2px solid #333;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.layout-3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+}
+
+
+.layout-3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: inherit;
+  --dir: to right;
+  background-image: linear-gradient(
+    var(--dir),
+    transparent 25%,
+    #333 calc(25% + 3px),
+    transparent calc(25% + 3px),
+    transparent 50%, 
+    #333 calc(50% + 3px),
+    transparent calc(50% + 3px),
+    transparent 75%, 
+    #333 calc(75% + 3px),
+    transparent calc(75% + 3px)
+  );
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.logo-item-image {
+  width: 50px;
+}
+
+@media screen and (max-width: 767px) {
+  .webapp {
+    width: 100%;
+  }
+  .layout-3 {
+    margin: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .layout-3::after {
+    --dir: to bottom;
+  }
+
+  .layout-3::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background-color: #333;
+  }
+}
